@@ -45,4 +45,21 @@ class ServicoRequest extends FormRequest
             'horas_outros' => ['required', 'integer', 'min:1', 'max:8']
         ];
     }
+
+    public function validationData()
+    {
+        $dados = $this->all();
+
+        $dados['valor_minimo'] = str_replace(['.', ','], ['', '.'], $dados['valor_minimo']);
+        $dados['valor_quarto'] = str_replace(['.', ','], ['', '.'], $dados['valor_quarto']);
+        $dados['valor_sala'] = str_replace(['.', ','], ['', '.'], $dados['valor_sala']);
+        $dados['valor_banheiro'] = str_replace(['.', ','], ['', '.'], $dados['valor_banheiro']);
+        $dados['valor_cozinha'] = str_replace(['.', ','], ['', '.'], $dados['valor_cozinha']);
+        $dados['valor_quintal'] = str_replace(['.', ','], ['', '.'], $dados['valor_quintal']);
+        $dados['valor_outros'] = str_replace(['.', ','], ['', '.'], $dados['valor_outros']);
+
+        $this->replace($dados);
+
+        return $dados;
+    }
 }
